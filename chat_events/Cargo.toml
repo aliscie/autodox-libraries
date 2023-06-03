@@ -1,0 +1,16 @@
+[package]
+name = "chat_events"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+candid = { workspace = true }
+ic-ledger-types = { workspace = true }
+itertools = { workspace = true }
+ledger_utils = { path = "../ledger_utils" }
+search = { path = "../search" }
+serde = { workspace = true }
+sha2 = { workspace = true }
+types = { path = "../types" }
