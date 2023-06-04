@@ -6,18 +6,20 @@
 candid_gen = { git = "https://github.com/aliscie/autodox-libraries/candid_gen" }
 ```
 
-2. In your canister folder next to lib.rs create main.rs file and add this
+2. In your canister folder next to lib.rs create lib.rs file and add this
 
 ```rs
-use candid_gen::generate_candid_method;
+#[cfg(test)]
+mod tests {
+    use candid_gen::generated_candid;
+    use super::*;
 
-fn main() {
-    generate_candid_method!(my_canister_name, modulename, query);
-    generate_candid_method!(<you canister name>, modulename, update);
-    candid::export_service!();
-    std::print!("{}", __export_service());
-    std::print!("----------- task is done --------------");
+    #[test]
+    fn save_candid() {
+        let current_dir = env::current_dir().expect("Failed to get current directory");
+        generated_candid(current_dir)
+    }
 }
 ```
 
-3. Now you can run `carog run`
+3. Now you can run `carog test`
